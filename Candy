@@ -1,0 +1,10 @@
+Leetcode -135
+//see man atleast fucking try to make a solution for 25 minutes dont be stupid and give up....
+Okk so we have two rules
+
+1.Each child must have at least one candy.
+2.Children with a higher rating get more candies than their neighbors. (left and right)
+
+
+so to satify first condition i make an ans array where ans[i] will denote the no of candy the ith child will get so initially i will allocate 1 candy to each child to
+satisfy the first condition .. because a child cannot have less than 1 candy 
