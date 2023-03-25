@@ -1,0 +1,22 @@
+you figured out the approach for this question its too easy 
+ int maxScore(vector<int>& v, int k) 
+    {
+         
+        int i,j,n=v.size(),sum=0;
+         j=n-1;
+         int ans=INT_MIN,temp=k;
+         while(k--)
+         {
+          sum+=v[j];
+          j--;
+         }
+         k=temp;
+         ans=max(ans,sum);
+       for(i=0;i<k;i++)
+       {
+           sum+=v[i];
+           sum-=v[n-k+i];
+           ans=max(ans,sum);
+       }
+       return ans;
+    }
