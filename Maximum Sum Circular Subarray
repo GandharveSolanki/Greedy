@@ -1,0 +1,8 @@
+seee your approach is also good but below approach is just pure class 
+
+https://leetcode.com/problems/maximum-sum-circular-subarray/solutions/3070326/most-detailed-explanation-easy-to-understand-c/?page=3
+
+see to calculate the wrap subrarray sum just calculate the minimum sum and subtract from total and this can be one of the possible answer ..
+
+https://leetcode.com/problems/maximum-sum-circular-subarray/solutions/3067403/beats-100-explanation-with-images-and-video-java-o-n-kadane-s-algorithm/
+see above link for the wrapped subarray sum we subtracted min sum which was -2+-1+-3
