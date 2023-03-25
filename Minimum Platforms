@@ -33,3 +33,7 @@ our approach is first sort the array by start time then apply the Meeting rooms 
     //another approach you sort start time and end time in ascending order then you must wonder the start time corresponding to the end time will be gone but this approach
     is diff this will work after sorting them 
     now i will explain
+    first befoe coming to this solution watch anuj bhaiya video that will make your concept more clear its just a 9 min video
+    .
+    
+    otherwise refer below..
