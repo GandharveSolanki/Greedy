@@ -1,0 +1,48 @@
+approach is use two stacks  and we store indexes of the open bracket and * in the stack 
+
+see if right bracket comes we pop out the open bracket if open is empty while right has come so see if there is a star present in the stack if it is there then pop a star
+assume we have made that * into ( now in this way we will be able to balance open and closing brackets now 
+
+what happend if there are excess close brackets presnt in that case match the respective open bracket with a star if excess open pos < pos of star then this star will be
+converted in a close and open and close can match 
+see tech dose video if any doubt 
+
+
+//code
+bool checkValidString(string s) 
+    {
+        int i,n=s.size();
+        stack<int> open,star;
+        for(i=0;i<s.size();i++)
+        {
+            if(s[i]=='(')
+            open.push(i);
+            else if(s[i]==')')
+            {
+                if(open.empty())
+                {
+                   if(star.empty())
+                   return false; 
+                   else
+                   star.pop();
+                }
+                else
+                {
+                    open.pop();
+                }
+            }
+            else
+            {
+                star.push(i);
+            }
+        }
+        while(!open.empty())
+        {
+            int pos=open.top();
+            if(star.empty()||star.top()<pos)
+            return false;
+            star.pop();
+            open.pop();
+        }
+        return true;
+    }
