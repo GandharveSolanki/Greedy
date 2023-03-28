@@ -46,3 +46,37 @@ bool checkValidString(string s)
         }
         return true;
     }
+
+
+now a more optimised approach with O(1) space complexity see if you are going from left to right if sum of openbracktes +* -close brackets is less than 0 then
+return false  now when you are out of the loop
+you know that either the open and close are balanced or the open brackets are in excess ...
+so to check if open are not in excess run a loop from end to the beginning and check that shit..
+if sum of close + star - open<0 return false means the open bracket are in excess..
+
+//code
+ bool checkValidString(string s) 
+    {
+        int i,n=s.size();
+        int balance =0;
+        for(i=0;i<s.size();i++)
+        {
+             if(s[i]==')')
+             balance--;
+             else
+             balance++;
+             if(balance<0)
+             return false;
+        }
+        balance=0;
+        for(i=n-1;i>=0;i--)
+        {
+            if(s[i]=='(')
+            balance--;
+            else
+            balance++;
+            if(balance<0)
+            return false;
+        }
+        return true;
+    }
