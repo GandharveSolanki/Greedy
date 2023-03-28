@@ -1,0 +1,27 @@
+you solved this 
+
+the approach was lets say we have to generate target and only way to generate is to take max between 2d array ele so we will take max of those ele in which the respective
+ele present in them satiesfies the constraint that is a[0]<=target[0] a[1]<=target[1] and a[2]<=target[2] and so in this way after max of all these intevrals the final
+ans which we will get will contain first ele<=target[0] secondele<=target[1] thirdele<=target[2]...
+
+
+//solution
+
+ bool mergeTriplets(vector<vector<int>>& triplets, vector<int>& target)
+    {
+    int i,n=triplets.size();
+    vector<int> ans(3,0);
+    for(auto it:triplets)
+    {
+        vector<int> v=it;
+        if((v[0]<=target[0])&&((v[1]<=target[1])&&v[2]<=target[2]))
+        {
+            ans[0]=max(ans[0],v[0]);
+            ans[1]=max(ans[1],v[1]);
+            ans[2]=max(ans[2],v[2]);
+        }
+    }
+    if(ans[0]==target[0]&&((ans[1]==target[1])&&(ans[2]==target[2])))
+    return true;
+    return false;
+    }
