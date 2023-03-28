@@ -37,3 +37,49 @@ our approach is first sort the array by start time then apply the Meeting rooms 
     .
     
     otherwise refer below..
+    
+    
+   arr[] = {0900, 0940, 0950, 1100, 1500, 1800}
+dep[] = {0910, 1200, 1120, 1130, 1900, 2000}
+
+sort both the arrays individually
+
+arr[] = {0900, 0940, 0950, 1100, 1500, 1800}
+dep[] = {0910,  1120, 1130, 1200,1900, 2000}
+
+now look this initially train is coming at 900 so it will require 1 platform then 
+we start i=1,j=0 
+so i=1  at 9:40 a train is arriving but j=0 9:10 at this time a train is leaving see dep time current is less  so we see that first 
+so a train is leaving at 9:10 so we first free that train so one platform becomes free so plat -- then j++ now another train will be leaving at 11:20 but a train
+is arriving at 9:40 so we this train will require a platfrom so plat++ and i++ now time is 9:50 so another train is arriving so this train will require platform
+so plat++ i++ 11:00 again plat++ i++ now time 15:00 but before this train comes a train is leaving at 11:20 so a platform is becoming free so plat-- j++ 
+
+so in this while we perform these steps we keep taking maximums at every step and our ans will be the maximum platform required at any instant thus giving us minimum
+platforms required..
+
+
+//code
+
+int findPlatform(int arr[], int dep[], int n)
+    {
+    	// Your code here
+    	int i=1;
+    	sort(arr,arr+n);
+    	sort(dep,dep+n);
+        int ans=1,plat=1,j=0;
+        while(i<n&&j<n)
+        {
+            if(arr[i]<=dep[j])
+            {
+                i++;
+                plat++;
+            }
+            else
+            {
+                j++;
+                plat--;
+            }
+            ans=max(ans,plat);
+        }
+        return ans;
+    }
