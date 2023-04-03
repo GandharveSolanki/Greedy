@@ -1,0 +1,70 @@
+
+//the below code which you made is actually O(n^2) consider the case when min jump=1 and maxjump = arrlenght and eg like this s="000000000001"
+so for one index you will visit all the states ahead of it
+so this is O(n^2)...
+int rec(string& s,int& minj,int& maxj,int& n,int i,vector<int>& dp)
+{
+    if(i == n-1)
+        return true;
+    if(dp[i]!=-1)return dp[i];
+    
+    int flag = 0;
+    for(int j=i+minj;j<=min(i+maxj,n-1);j++)
+    {
+        if(s[j]=='0')
+        {
+            if(dp[j]==-1)
+            {
+                if(rec(s,minj,maxj,n,j,dp))
+                {
+                    flag = 1;
+                    break;
+                }
+            }
+            else if(dp[j])
+            {
+                flag = 1;
+                break;
+            }
+        }
+    }
+    return dp[i] = flag;
+}
+    bool canReach(string s, int minJump, int maxJump)
+    {
+          int n=s.size();
+          vector<int> dp(n,-1);
+          return rec(s,minJump,maxJump,n,0,dp);      
+    }
+    
+    // optimisation reaching n^2 solution see the main goal is to the reach the end of the array that is to reach the last index so lets just say from 0 you can
+    reach 4 and 5,6,7 so obv from 1st index you will be able to reach 5,6,7,8 but we dont want to again go to 5,6,7 i already know i can reach these states why should 
+    i go to these states again so to counter this i will maintain a variable farthest which will tell me how far have we reach now ... and then we apply standard 
+    bfs using queue like first 0 index goes into the queue then we traverse its neighbours etc and so on..
+    
+    //your own code
+        bool canReach(string s, int minJump, int maxJump)
+    {
+         int n=s.size();
+          queue<int> q;
+          q.push(0);
+          int farthest=0;
+          if(s[n-1]=='1')
+          return false;
+         while(!q.empty())
+         {
+             int pos=q.front();
+             q.pop();
+             if(pos==n-1)
+             return true;
+             if(s[pos]=='0')
+             {
+                     for(int j=max(farthest+1,pos+minJump);j<min(n,pos+maxJump+1);j++)
+                     {
+                         q.push(j);
+                         farthest=j;
+                     }
+             }
+         }
+         return false;
+    }
