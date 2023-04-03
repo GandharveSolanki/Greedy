@@ -1,0 +1,27 @@
+see take a visited array so that you dont  fall into infinite loop
+
+
+//your own code
+int solution(int ind,vector<int>&arr,vector<int>&dp,vector<bool>visited)
+    {
+
+        if(ind<0||ind>=arr.size())
+        return false;
+        if(visited[ind]==true)
+        return false;
+        if(arr[ind]==0)
+        return true;
+        if(dp[ind]!=-1)
+        return dp[ind];
+        visited[ind]=true;
+        int op1=solution(ind+arr[ind],arr,dp,visited);
+        int op2=solution(ind-arr[ind],arr,dp,visited);
+        return dp[ind]=op1+op2;
+    }
+    bool canReach(vector<int>& arr, int start)
+    {
+        int i,n=arr.size();
+        vector<int> dp(n,-1);
+        vector<bool>visited(n,false);
+        return solution(start,arr,dp,visited);
+    }
