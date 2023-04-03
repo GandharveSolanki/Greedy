@@ -1,0 +1,48 @@
+see in this question you have to partition the string s into as many partitions as possible there are two cond partition should be of atleast lenght 1 and the elements 
+which are present in one partition should now be present in any other partition 
+
+like string is akkakbbbbbcccddefghe
+ max partitions are akkak bbbbb ccc dd efghe
+ 
+ you can in first partition a is there and it is not present in any other partition than it.
+ in second partiotion b is there and it will not present in other partition than the current one
+ 
+ now to how to solve this problem 
+ lets just say we are trying to create the partition and we include the current element in it so if we have include this ele in partition so we have to ensure that this 
+ ele does not comes into any other partition so before creating a partition at this curr index we first check the last postion of the current ele if last position is same
+ as the current then yes we can create a partition here otherwise we cant 
+ 
+ lets say for eg see above string in eg  at index 0 a is there i want max partitions as possible so i will check if i can create partition at this index or not but the last
+ position of the this ele a is at index 3 so we will not be able to create partition till index 3 now we move on to the next ele which is k the last pos is at index 4
+ now we will not be able to create partition till index 4 now once you reach index 4 you can create partition as all elements present in this partition will not occur
+ in any other partition..
+ 
+so ele and its last index matter to solve this problem
+
+///your own code
+
+    vector<int> partitionLabels(string s) 
+    {
+        //we have to split into as many partitions as possible and the partion which is maximum return the
+        //lenghts of the individual partion strings in vector.
+       vector<int> v;
+       int i;
+       unordered_map<char,int> m;
+       for(i=0;i<s.size();i++)
+       {
+         m[s[i]]=i;
+       }
+       int end=-1;
+       int start=0;
+       for(i=0;i<s.size();i++)
+       {
+
+           end=max(m[s[i]],end);
+           if(i==end)
+           {
+                v.push_back(end-start+1);
+                start=i+1;
+           }
+       }
+        return v;
+    }
