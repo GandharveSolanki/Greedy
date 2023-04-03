@@ -1,0 +1,20 @@
+before coming to this question solve jump game 7
+
+
+//code
+int maxResult(vector<int>& nums, int k)
+    {
+        int i,n=nums.size();
+        vector<int> dp(n,INT_MIN);
+        dp[0]=nums[0];
+        priority_queue<pair<int,int>> pq;
+
+        for(i=1;i<n;i++)
+        {
+            pq.push({dp[i-1],i-1});
+           while(pq.top().second<i-k)
+           pq.pop();
+           dp[i]=nums[i]+pq.top().first;   
+        }
+        return dp[n-1];
+    }
