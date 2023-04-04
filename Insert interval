@@ -1,0 +1,93 @@
+see the problem looks easy but there are lot of edge case that you need to consider like what if the new interval start is the smallest then it will come in start
+newinterval can come in mid or it can come at last what if the list is empty etc
+
+so think wisely before making solutions
+
+//code
+  vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) 
+    {
+         int i,n=intervals.size();
+         int start,end,startIndex;
+         vector<vector<int>> ans;
+         bool flag;
+          if(n==0)
+         {
+             ans.push_back(newInterval);
+             return ans;
+         }
+         if(newInterval[0]<intervals[0][0])
+         {
+               startIndex=0;
+               start=newInterval[0];
+               end=newInterval[1];
+               flag=false;
+         }
+         else
+         {
+                startIndex=1;
+                start=intervals[0][0];
+                end=intervals[0][1];
+                flag=true;
+         }
+         for(i=startIndex;i<n;i++)
+         {
+             vector<int> v;
+              if(flag==true&&intervals[i][0]>newInterval[0])
+              {
+                  if(newInterval[0]<=end)
+                  {
+                      end=max(end,newInterval[1]);
+                  }
+                  else
+                  {
+                      v.push_back(start);
+                      v.push_back(end);
+                      ans.push_back(v);
+                      start=newInterval[0];
+                      end=newInterval[1];
+                  }
+                   flag=false;
+                  i--;
+              }
+              else
+              {
+                  if(intervals[i][0]<=end)
+                  {
+                       end=max(end,intervals[i][1]);
+                  }
+                  else
+                  {
+                      v.push_back(start);
+                      v.push_back(end);
+                      ans.push_back(v);
+                      start=intervals[i][0];
+                      end=intervals[i][1];
+                  }
+              }
+         }
+         vector<int> v;
+         if(flag==true)
+         {
+                 if(newInterval[0]<=end)
+                  {
+                      end=max(end,newInterval[1]);
+                      v.push_back(start);
+                      v.push_back(end);
+                      ans.push_back(v);
+                  }
+                  else
+                  {
+                      v.push_back(start);
+                      v.push_back(end);
+                      ans.push_back(v);
+                      ans.push_back(newInterval);
+                  }
+         }
+         else
+         {
+                      v.push_back(start);
+                      v.push_back(end);
+                      ans.push_back(v);
+         }
+         return ans;
+    }
