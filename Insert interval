@@ -2,7 +2,8 @@ see the problem looks easy but there are lot of edge case that you need to consi
 newinterval can come in mid or it can come at last what if the list is empty etc
 
 so think wisely before making solutions
-
+//this approach is also good cause see in intervals vector there is no interval that is overlapping after insertion of newInterval the remaining intervals may overlap
+https://leetcode.com/problems/insert-interval/solutions/3059587/q57-accepted-c-sol-tc-o-n-easiest-approach/
 //code
   vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) 
     {
