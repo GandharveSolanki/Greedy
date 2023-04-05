@@ -1,0 +1,41 @@
+see sort the query acc to their sizes then lets say on top of the list the query is [4,8] then then ans for 4 to 8 will be 8-4+1=5  etc
+
+so see your own code
+
+bool comp(vector<int>&x,vector<int>&y)
+{
+      if(x[1]-x[0]<y[1]-y[0])
+      return true;
+      return false;
+}
+class Solution {
+public:
+    vector<int> minInterval(vector<vector<int>>& intervals, vector<int>& queries)
+    {
+               sort(intervals.begin(),intervals.end(),comp);
+               int i,n=queries.size();
+              vector<int> ans(n,-1);
+               set<pair<int,int>> s;
+               for(i=0;i<n;i++)
+               {
+                   s.insert({queries[i],i});
+               }
+               for(i=0;i<intervals.size();i++)
+               {
+                   vector<int> v=intervals[i];
+                   int length=v[1]-v[0]+1;
+                   auto upper=s.upper_bound({v[1],INT_MAX});
+                   auto lower=s.lower_bound({v[0],0});
+                   //if you have any doubt about understanding obove 2 statements then just debug and you will understand.....
+                   auto it=lower;
+                   while(it!=upper)
+                   {
+                    ans[it->second]=length;
+                       auto it2=it;
+                       it++;
+                       s.erase(it2);
+                   }
+               }
+            
+               return ans;
+    }
