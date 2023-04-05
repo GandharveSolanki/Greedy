@@ -1,4 +1,5 @@
 see sort the query acc to their sizes then lets say on top of the list the query is [4,8] then then ans for 4 to 8 will be 8-4+1=5  etc
+//dont use map else it will give tle
 
 so see your own code
 
